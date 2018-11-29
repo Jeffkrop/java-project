@@ -9,7 +9,7 @@ properties([pipelineTriggers([githubPush()])])
     stage('Build') {
       sh 'ant -f build.xml -v'
     }
-    stage('Results') {
-      junit 'reports/*.xml'
+    stage('Report') {
+      aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins
     }
 }
