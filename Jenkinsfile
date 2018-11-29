@@ -6,12 +6,9 @@ properties([pipelineTriggers([githubPush()])])
       junit 'reports/result.xml'
     }
     stage('Build') {
-      sh 'ant'
+      sh 'ant -f build.xml -v'
     }
     stage('Report') {
-      withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '83429242-4015-4c8c-9340-530967d54c1e', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-    // some block
-         aws cloudformation describe-stack-resources --region us-east-1 --stack-name Jenkins
-        }  
+
     }
 }
