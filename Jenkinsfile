@@ -2,6 +2,7 @@ properties([pipelineTriggers([githubPush()])])
   node('linux') {
     stage('Unit Tests') {
       git 'https://github.com/jeffkrop/java-project.git'
+      sh "env"
       sh 'ant -f test.xml -v'
       junit 'reports/result.xml'
     }
