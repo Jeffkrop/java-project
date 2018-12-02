@@ -10,9 +10,6 @@ properties([pipelineTriggers([githubPush()])])
     stage('Build') {
       sh 'ant -f build.xml -v'
     }
-    stage('Results') {
-      withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '83429242-4015-4c8c-9340-530967d54c1e', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-         aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins
-        }  
+ 
     }
 }
