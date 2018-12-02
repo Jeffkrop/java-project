@@ -8,7 +8,7 @@ node('linux') {
     }
     stage('Deploy'){
     s3Upload consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, 
-        entries: [[bucket: 'homework-11', excludedFile: '', flatten: false, gzipFiles: false, 
+        entries: [[bucket: 'homework-11/rectangle-${BUILD_NUMBER}.jar', excludedFile: '', flatten: false, gzipFiles: false, 
         keepForever: false, managedArtifacts: false, noUploadOnFailure: false, 
         selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: '*', 
         storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], 
