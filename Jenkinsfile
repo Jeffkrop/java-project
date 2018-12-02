@@ -7,7 +7,12 @@ node('linux') {
       sh 'ant -f build.xml -v'
     }
     stage('Deploy'){
-    sh 'aws s3 cp rectangle-${BUILD_NUMBER}.jar s3://homework-11'
+    s3Upload consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, 
+        entries: [[bucket: 'homework-11', excludedFile: '', flatten: false, gzipFiles: false, 
+        keepForever: false, managedArtifacts: false, noUploadOnFailure: false, 
+        selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: '*', 
+        storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], 
+        pluginFailureResultConstraint: 'SUCCESS', profileName: '', userMetadata: []
     }
     stage('Results') {
     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 
