@@ -7,9 +7,11 @@ node('linux') {
       sh 'ant -f build.xml -v'
     }
     stage('Results') {
-    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'a27f19d8-aafb-4dd1-8819-048f66e5e14c', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 
+                      'AWS_ACCESS_KEY_ID', credentialsId: 'a27f19d8-aafb-4dd1-8819-048f66e5e14c', 
+                      secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
     // some block
-        aws cloudformation describe-stack-resources --stack-name Jenkins --region us-east-1 
+       sh 'aws cloudformation describe-stack-resources --stack-name Jenkins --region us-east-1' 
     }
   }     
 }
