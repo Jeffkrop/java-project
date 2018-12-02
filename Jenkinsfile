@@ -14,7 +14,7 @@ node('linux') {
         storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], 
         pluginFailureResultConstraint: 'SUCCESS', profileName: '', userMetadata: []
     }
-    stage('Results') {
+    stage('Report') {
     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 
                       'AWS_ACCESS_KEY_ID', credentialsId: 'a27f19d8-aafb-4dd1-8819-048f66e5e14c', 
                       secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
