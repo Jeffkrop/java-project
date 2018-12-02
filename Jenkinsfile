@@ -11,7 +11,7 @@ node('linux') {
        entries: [[bucket: 'homework-11/rectangle-${BUILD_NUMBER}.jar', 
        excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, 
        managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', 
-       showDirectlyInBrowser: false, sourceFile: 'artifacts/**/*', storageClass: 'STANDARD', 
+       showDirectlyInBrowser: false, sourceFile: '*', storageClass: 'STANDARD', 
        uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', 
        profileName: '', userMetadata: []}
     stage('Report') {
