@@ -7,6 +7,9 @@ node('linux') {
     stage('Build') {
       sh 'ant -f build.xml -v'
     }
+    stage('Deploy'){
+        sh 'files = findFiles(glob: '*.*')'
+    }
      stage('Report') {
      withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 
                       'AWS_ACCESS_KEY_ID', credentialsId: 'a27f19d8-aafb-4dd1-8819-048f66e5e14c', 
