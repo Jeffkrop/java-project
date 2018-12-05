@@ -8,16 +8,12 @@ node('linux') {
       sh 'ant -f build.xml -v'
     }
     stage('Deploy'){
-        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 
-                      'AWS_ACCESS_KEY_ID', credentialsId: 'a27f19d8-aafb-4dd1-8819-048f66e5e14c', 
-                      secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
         sh 'aws s3 cp /workspace/java-pipeline/dist/rectangle-${BUILD_NUMBER}.jar s3://'
-        }
     }
      stage('Report') {
-     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 
-                      'AWS_ACCESS_KEY_ID', credentialsId: 'a27f19d8-aafb-4dd1-8819-048f66e5e14c', 
-                      secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+                       credentialsId: '6b9c7ae5-4e91-4c2b-8d3f-f77e74d467f8', 
+                       secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
        sh 'aws cloudformation describe-stack-resources --stack-name Jenkins --region us-east-1' 
     }
   }     
